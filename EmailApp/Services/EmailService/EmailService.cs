@@ -10,6 +10,7 @@ namespace EmailApp.Services.EmailService
         private readonly EmailServerModel _emailServer;
         public EmailService(IConfiguration configuration)
         {
+            //var resut = configuration.GetValue<string>("Logging:LogLevel:Default");
             _emailServer = configuration.GetSection("EmailConfiguration").Get<EmailServerModel>();
         }
 
