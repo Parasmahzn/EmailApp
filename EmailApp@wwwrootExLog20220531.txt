@@ -1,0 +1,10 @@
+=============Error Logging ===========
+===========Start============= 5/31/2022 2:26:41 PM
+Error Message: 534: 5.7.9 Application-specific password required. Learn more at
+5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor n15-20020a170902968f00b001617ffc6d25sm8896427plp.19 - gsmtp
+Stack Trace:    at MailKit.Net.Smtp.SmtpClient.AuthenticateAsync(Encoding encoding, ICredentials credentials, Boolean doAsync, CancellationToken cancellationToken)
+   at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken)
+   at EmailApp.Services.EmailService.EmailService.SendEmailTo(EmailDto request) in D:\Personnal\New folder\.NET 6 APPLICATIONS\EmailApp\EmailApp\Services\EmailService\EmailService.cs:line 59
+===========End============= 5/31/2022 2:26:41 PM
