@@ -10,13 +10,12 @@ namespace EmailApp.Services.EmailService
         private readonly EmailServerModel _emailServer;
         public EmailService(IConfiguration configuration)
         {
-            //var resut = configuration.GetValue<string>("Logging:LogLevel:Default");
             _emailServer = configuration.GetSection("EmailConfiguration").Get<EmailServerModel>();
         }
 
-        public bool SendEmail(EmailDto request)
+        public bool SendEmail(EmailDto request, out string message)
         {
-            return SendEmailTo(request);
+            return SendEmailTo(request, out message);
         }
 
         public bool SendBulkEmail(EmailDto request)
@@ -30,12 +29,12 @@ namespace EmailApp.Services.EmailService
             foreach (var item in recipient)
             {
                 request.To = item;
-                send = SendEmailTo(request);
+                send = SendEmailTo(request, out string message);
             }
             return send;
         }
 
-        private bool SendEmailTo(EmailDto request)
+        private bool SendEmailTo(EmailDto request, out string message)
         {
             bool isEmailSent = false;
             try
@@ -51,6 +50,7 @@ namespace EmailApp.Services.EmailService
                 smtp.Authenticate(_emailServer.Username, _emailServer.Password);
                 smtp.Send(email);
                 smtp.Disconnect(true);
+                message = "Email sent successfully";
                 isEmailSent = true;
             }
             catch (Exception ex)
@@ -69,6 +69,7 @@ namespace EmailApp.Services.EmailService
                 sw.WriteLine("Error Message: " + ex.Message);
                 sw.WriteLine("Stack Trace: " + ex.StackTrace);
                 sw.WriteLine("===========End============= " + DateTime.Now);
+                message = ex.Message;
             }
             return isEmailSent;
         }

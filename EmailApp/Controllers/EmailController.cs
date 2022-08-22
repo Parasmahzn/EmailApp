@@ -16,11 +16,11 @@ namespace EmailApp.Controllers
         [HttpPost]
         public IActionResult SendEmail(EmailDto request)
         {
-            var result = _emailService.SendEmail(request);
+            var result = _emailService.SendEmail(request, out string message);
             if (result)
-                return Ok();
+                return Ok(message);
             else
-                return BadRequest();
+                return BadRequest(message);
 
         }
         [HttpPost]
