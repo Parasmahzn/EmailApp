@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\ExceptionLog\**" />
+    <Content Remove="wwwroot\ExceptionLog\**" />
+    <EmbeddedResource Remove="wwwroot\ExceptionLog\**" />
+    <None Remove="wwwroot\ExceptionLog\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\ExLog20220531.txt" />
   </ItemGroup>
 
@@ -17,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\ExceptionLog\" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
